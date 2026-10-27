@@ -1,0 +1,18 @@
+# Frontend
+node_modules/
+dist/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Editors and operating systems
+.vscode/
+.DS_Store

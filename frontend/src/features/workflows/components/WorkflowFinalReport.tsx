@@ -1,0 +1,5 @@
+import type { WorkflowTimelineData } from '../types'
+
+export default function WorkflowFinalReport({ finalization, onOpenArtifact }: { finalization: WorkflowTimelineData['finalization']; onOpenArtifact: (id: number) => void }) {
+  return <section className="timeline-final"><header><div><p className="page-eyebrow">Manager phase</p><h3>Final Report</h3></div><span className={`execution-status execution-status--${finalization.status}`}>{finalization.status.replace('_', ' ')}</span></header>{finalization.started_at ? <p>Started {new Date(finalization.started_at).toLocaleString()}</p> : <p>Finalization start time is not recorded.</p>}{finalization.report_preview && <pre>{finalization.report_preview}{finalization.report_truncated ? '\n… Report preview truncated. Open its artifact for the full report.' : ''}</pre>}{finalization.error_message && <p className="execution-error">{finalization.error_code}: {finalization.error_message}</p>}{finalization.artifacts.map((artifact) => <button key={artifact.id} onClick={() => onOpenArtifact(artifact.id)}>Open report artifact: {artifact.title}</button>)}</section>
+}
